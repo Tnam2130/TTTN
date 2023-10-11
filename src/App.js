@@ -40,7 +40,7 @@ function App() {
   <main>
     <body>
       <Container>
-        <Container fluid>
+        <Container fluid className="px-0">
           <Row className="mt-2">
             <Col sm={12}>
             <Image src={top_board} fluid rounded className="boardgame-img--thumb"/>
@@ -65,7 +65,26 @@ function App() {
           </Col>
         </Row>
       </Container>
-      <Container></Container>
+      <Container>
+        <div className="combo-title text-center">
+          <h3>Combo board games</h3>
+        </div>
+        <Row className="mt-2">
+          <Col sm={4}>
+          <Card style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={coyateLogo} />
+            <Card.Body>
+              <Card.Title>Card Title</Card.Title>
+              <Card.Text>
+                Some quick example text to build on the card title and make up the
+                bulk of the card's content.
+              </Card.Text>
+              {/* <Button variant="primary">Go somewhere</Button> */}
+            </Card.Body>
+          </Card>
+          </Col>
+        </Row>
+      </Container>
     </body>
   </main>
     </div>
