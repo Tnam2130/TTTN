@@ -1,0 +1,4 @@
+.boardgame-img--thumb {
+  object-fit: cover;
+  /* width: 100%; */
+}
