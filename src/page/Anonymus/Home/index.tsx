@@ -1,11 +1,11 @@
-import { AdminLayout } from "../../../components/Layout/AdminLayout";
+import { HomeLayout } from "../../../components/Layout/HomeLayout";
 
 export const HomeAdmin = () => {
   return (
     <>
-      <AdminLayout>
+      <HomeLayout>
         <div className="text-lg text-red-500">Home Admin</div>
-      </AdminLayout>
+      </HomeLayout>
     </>
   );
 };
