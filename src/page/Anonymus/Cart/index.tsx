@@ -3,7 +3,7 @@ import { Container, Row, Col, Image, Card } from "react-bootstrap";
 import topBoardGames from "../../../assets/images/top_board_games.jpg";
 import Coyate from "../../../assets/images/coyote.jpg";
 
-export const Home = () => {
+export const Cart = () => {
   return (
     <>
       <HomeLayout>
@@ -29,7 +29,7 @@ export const Home = () => {
                   <Card style={{ width: "18rem" }}>
                     <Card.Img variant="top" src={Coyate} />
                     <Card.Body>
-                      <Card.Title>Card Title</Card.Title>
+                      <Card.Title>Hello sep</Card.Title>
                       <Card.Text>
                         Some quick example text to build on the card title and
                         make up the bulk of the card's content.

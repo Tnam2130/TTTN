@@ -13,8 +13,8 @@ export const Header = () => {
             className="justify-content-between"
           >
             <Nav className="me-auto">
-              <Nav.Link href="#home">Home</Nav.Link>
-              <NavDropdown title="Products" id="basic-nav-dropdown">
+              <Nav.Link href="/">Home</Nav.Link>
+              <NavDropdown title="Categories" id="basic-nav-dropdown">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -27,13 +27,13 @@ export const Header = () => {
                   Separated link
                 </NavDropdown.Item>
               </NavDropdown>
-              <Nav.Link href="#categories">Categories</Nav.Link>
+              <Nav.Link href="#categories">Products</Nav.Link>
               <Nav.Link href="#about">About Us</Nav.Link>
               <Nav.Link href="#contact">Contact</Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link href="#security">Login / Sign up</Nav.Link>
-              <Nav.Link href="#cart">
+              <Nav.Link href="cart">
                 <FiShoppingCart style={{ fontSize: "25px" }} />
               </Nav.Link>
             </Nav>

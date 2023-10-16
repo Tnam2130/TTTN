@@ -1,10 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
-import { HomeAdmin } from "./page/Anonymus/Home";
+import { Home } from "./page/Anonymus/Home";
+import { Cart } from "./page/Anonymus/Cart";
 
 const anonymus = [
   {
     path: "/",
-    element: <HomeAdmin />,
+    element: <Home />,
+  },
+  {
+    path: "cart",
+    element: <Cart />,
   },
 ];
 
