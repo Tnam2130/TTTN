@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+th:replace="~{/layout/index :: dynamic(~{::main})}">
+
+
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style href="/assest/css/products/product.css"></style>
+</head>
+<body>
+	<main class="row">
+		<header class="bg-image py-5" style="
+        background-image: url('https://images.ctfassets.net/0piqveu8x9oj/2o5esSpSTcmnbZTJwCs7Ha/4658c17e30df600f8d771e49fa144e05/everything-you-need-to-know-about-the-magic-celebration-event-meta-image.jpeg');
+        height: 50vh;
+">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder" style="color: white;">BOARDKINGDOM</h1>
+                </div>
+            </div>
+        </header>
+		<div th:each="b:${items}" class="container px-4 px-lg-5 mt-5 col-sm-4">
+			<div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top justify-content-center" th:src="@{|/assest/image/products/${b.image}|}" style="max-height: 330px; max-width: 250px; margin: auto; margin-top: 15px;"/>
+                    <!-- Product details-->
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h3 class="fw-bolder" th:text="${b.gname.gamename}"></h3>
+							<h6 th:text="${b.publishers.publishername}"></h6>
+							<h5 th:text="${b.selltype.selltypename}"></h5>
+                            <div style="display:flex; justify-content: center; padding: 5px;">
+                                <h3 th:text="${b.price}"></h3>
+                                <h6 class="ribbon ribbon-top-left"><span th:text="${b.categories.categoryname}" class="badge bg-primary"></span></h6>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center mrgBtm" style="margin-bottom: 15px;"><a class="btn btn-outline-dark mt-auto" th:href="@{|/qltv/products/detail/${b.boardgameid}|}" >Chi tiết</a></div>
+                        <th:block th:if="${#request.remoteUser}">
+                            <th th:if="${b.available}">
+                                <div class="text-center mrgBtm"><button class="btn btn-outline-dark mt-auto" th:attr="ng-click=@{|cart.add(${b.boardgameid})|}">Mua</button></div>
+                            </th>
+                            <th th:if="!${b.available}">
+                                <h4 style="text-align: center;"><span class="badge bg-danger">HIỆN TẠI ĐANG HẾT HÀNG</span></h4>
+                            </th>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+		</div>
+        <style>
+            @import url(https://fonts.googleapis.com/css?family=Lato:700);
+.box {
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  height: 400px;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(0,0,0,.1);
+}
+
+/* common */
+.ribbon {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  position: absolute;
+}
+.ribbon::before,
+.ribbon::after {
+  position: absolute;
+  z-index: -1;
+  content: '';
+  display: block;
+  border: 5px solid #2980b9;
+}
+.ribbon span {
+  position: absolute;
+  display: block;
+  width: 225px;
+  padding: 15px 0;
+  background-color: #3498db;
+  box-shadow: 0 5px 10px rgba(0,0,0,.1);
+  color: #fff;
+  font: 700 18px/1 'Lato', sans-serif;
+  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-transform: uppercase;
+  text-align: top;
+  font-size: 10px;
+}
+
+/* top left*/
+.ribbon-top-left {
+  top: -10px;
+  left: -10px;
+}
+.ribbon-top-left::before,
+.ribbon-top-left::after {
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+.ribbon-top-left::before {
+  top: 0;
+  right: 0;
+}
+.ribbon-top-left::after {
+  bottom: 0;
+  left: 0;
+}
+.ribbon-top-left span {
+  right: -25px;
+  top: 30px;
+  transform: rotate(-45deg);
+}
+        </style>
+	</main>
+</body>
+</html>
