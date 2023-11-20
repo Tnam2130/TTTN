@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>BoardKingdom</title>
+<link href="../assest/css/list.css" rel="stylesheet" />
+</head>
+<body>
+	<main>
+		<!-- Navigation-->
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container px-4 px-lg-5">
+				<a class="navbar-brand" th:href="@{/qltv/products}" style="font-family: 'Poppins', sans-serif;
+				font-family: 'Tilt Prism', sans-serif;">BOARDKINGDOM</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+					aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div style="margin-left:150px; transition: float 5s; transition-delay: 2.5s;">
+					<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#searchBox" aria-expanded="false" aria-controls="searchBox">
+						Tìm kiếm
+					</button>
+				</div>
+				<div class="collapse" id="searchBox">
+					<div class="card card-body" style="border:none;">
+						<form th:action="@{/qltv/search}" method="get">
+							<div class="input-group search-box" style="justify-content:center;">
+								<div class="form-outline margRg">
+								  <input id="search-input" type="search" class="form-control" />
+								</div>
+								<div class="margRg">
+									<button class="btn btn-outline-dark" type="button" data-bs-toggle="collapse" data-bs-target="#advanceSearchBox" aria-expanded="false" aria-controls="advanceSearchBox">
+										Tìm kiếm nâng cao
+									  </button>
+									  <div class="collapse" id="advanceSearchBox" style="margin-top: 15px;">
+										<div class="card card-body">
+											<div class="form-outline margRg">
+												<select name="" id="category" class="form-control">
+													<option value="">Tất cả</option>
+													<option th:each="category: ${categories}" th:value="${category.categoryid}" th:text="${category.categoryname}" ></option>
+												</select>
+											</div>										
+										</div>
+									</div>
+								</div>
+								<button id="search-button margRg" type="button" class="btn btn-primary">
+								  <i class="fas fa-search"></i>
+								</button>
+							</div>	
+						</form>
+					</div>
+				  </div>
+                    <form class="d-flex">
+                       <th:block th:unless="${#request.remoteUser}">
+						<div class="dropdown">
+                            <button class="btn btn-outline-dark dropdown-toggle margRg" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-door-open"></i> Đăng nhập
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="loginDropdown">
+                                <li><a class="dropdown-item" th:href="@{|/qltv/login/form|}">Đăng nhập</a></li>
+                                <li><hr class="dropdown-divider" /></li>
+                                <li><a class="dropdown-item" th:href="@{||}">
+                                    <i class="bi-facebook mr-2"></i><span></span>
+                                    Đăng nhập bằng Facebook
+                                </a></li>
+                                <li><a class="dropdown-item" href="#">
+                                    <i class="bi-google mr-2"></i>
+                                    Đăng nhập bằng Google
+                                </a></li>
+                            </ul>
+                        </div>
+					   </th:block>
+					   <th:block th:if="${#request.remoteUser}">
+					   		<th:block th:if="${#request.isUserInRole('ADMIN')}">
+								<div class="dropdown">
+									<button class="btn btn-outline-dark dropdown-toggle margRg" type="button" id="loginDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+										Chức năng dành cho Admin
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="loginDropdown">
+										<li><a class="dropdown-item" th:href="@{|/admin/dashboard|}">Mượn sách trực tiếp</a></li>
+										<li><a class="dropdown-item" th:href="@{|/admin/account|}" >
+											Quản lý tài khoản
+										</a></li>
+										<li><a class="dropdown-item" th:href="@{/admin/books}">
+											Quản lý sách
+										</a></li>
+										<li><a class="dropdown-item" th:href="@{/admin/rental}">
+											Quản lý cho mượn
+										</a></li>
+									</ul>
+								</div>
+							</th:block>
+					   </th:block>
+					   <th:block th:if="${#request.remoteUser}">
+							<th:block th:if="${#request.isUserInRole('USER')}">
+								<button class="btn btn-outline-dark margRg">
+									<a th:href="@{|/user/rental/history|}">Lịch sử mua hàng</a>
+								</button>
+							</th:block>
+							<button class="btn btn-outline-dark margRg" type="submit" >
+								<i class="bi-cart-fill me-1"></i>
+								<a th:href="@{/user/cart}">Giỏ hàng</a>
+								<span class="badge bg-dark text-white ms-1 rounded-pill">{{cart.count()}}</span>
+							</button>
+							<button class="btn btn-outline-dark margRg">
+								<a th:href="@{|/qltv/logout|}" ng-click="cart.clear()">Đăng xuất</a>
+							</button>
+					   </th:block>
+                        <style>
+							.margRg{
+								margin-right:20px;
+							}
+							a {
+								text-decoration: none;
+								color: black;
+							}
+							button:hover a{
+								color: white;
+							}
+						</style>	
+                    </form>
+				</div>
+		</nav>
+	</main>
+
+</body>
+</html>
